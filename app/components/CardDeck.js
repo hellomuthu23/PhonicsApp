@@ -5,7 +5,11 @@ import Swiper from 'react-native-swiper';
 export default class CardDeck extends Component {
   render() {
     return (
-      <Swiper height={600} index={this.props.cardIndex}>
+      <Swiper
+        autoplay={this.props.autoplay}
+        autoplayTimeout={5}
+        height={600}
+        index={this.props.cardIndex}>
         {this.props.cards.map((item, i) => (
           <Card
             key={i}

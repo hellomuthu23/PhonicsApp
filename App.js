@@ -30,14 +30,19 @@ export default class App extends Component {
   state = {
     showCard: false,
     showCardIndex: 0,
+    autoplay: false,
   };
 
   handleOnCardPress(item) {
-    this.setState({showCard: true, showCardIndex: item.index});
+    this.setState({showCard: true, showCardIndex: item.index, autoplay: false});
   }
 
   handleOnHeaderPress() {
-    this.setState({showCard: false, showCardIndex: 0});
+    this.setState({showCard: false, showCardIndex: 0, autoplay: false});
+  }
+
+  autoplay() {
+    this.setState({showCard: true, showCardIndex: 0, autoplay: true});
   }
   render() {
     return (
@@ -50,11 +55,20 @@ export default class App extends Component {
               onPress: () => this.handleOnHeaderPress(),
             }}
             centerComponent={{text: 'UK Phonics', style: {color: '#fff'}}}
+            rightComponent={{
+              icon: 'play-arrow',
+              color: '#fff',
+              onPress: () => this.autoplay(),
+            }}
           />
           <ScrollView>
             <View>
               {this.state.showCard ? (
-                <CardDeck cards={cards} cardIndex={this.state.showCardIndex} />
+                <CardDeck
+                  cards={cards}
+                  autoplay={this.state.autoplay}
+                  cardIndex={this.state.showCardIndex}
+                />
               ) : (
                 <FlatGrid
                   itemDimension={150}
