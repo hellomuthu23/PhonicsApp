@@ -11,7 +11,7 @@ export default class CardDeck extends Component {
             key={i}
             image={item.imageSrc}
             imageProps={{resizeMode: 'contain'}}
-            imageStyle={{height: '85%'}}
+            imageStyle={{height: 500}}
           />
         ))}
       </Swiper>
