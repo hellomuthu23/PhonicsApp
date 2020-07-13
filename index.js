@@ -1,9 +1,19 @@
 /**
  * @format
  */
+import React from 'react';
+import { AppRegistry } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
 
-import {AppRegistry} from 'react-native';
 import App from './App';
-import {name as appName} from './app.json';
+import { name as appName } from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+export default function Main() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
+
+AppRegistry.registerComponent(appName, () => Main);

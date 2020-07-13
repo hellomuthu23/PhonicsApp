@@ -6,11 +6,11 @@
  * @flow strict-local
  */
 import React, { Component } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { Card, Header } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
 
 import CardDeck from './app/components/CardDeck';
-import PhonicsCard from './app/components/PhonicsCard';
 
 const cards = [
   {name: 'a', imageSrc: require('./app/images/a.png'), index: 0},
@@ -26,7 +26,6 @@ const cards = [
   {name: 'e', imageSrc: require('./app/images/e.png'), index: 10},
   {name: 'f', imageSrc: require('./app/images/f.png'), index: 11},
 ];
-
 export default class App extends Component {
   state = {
     showCard: false,
@@ -36,32 +35,43 @@ export default class App extends Component {
   handleOnCardPress(item) {
     this.setState({showCard: true, showCardIndex: item.index});
   }
+
+  handleOnHeaderPress() {
+    this.setState({showCard: false, showCardIndex: 0});
+  }
   render() {
     return (
       <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView>
-            <View>
-              <Text>UK Phonics App</Text>
-              {this.state.showCard ? (
-                <CardDeck cards={cards} cardIndex={this.state.showCardIndex} />
-              ) : (
-                <FlatGrid
-                  itemDimension={100}
-                  data={cards}
-                  renderItem={({item}, i) => (
-                    <TouchableOpacity
-                      key={i}
-                      onPress={() => this.handleOnCardPress(item)}>
-                      <PhonicsCard card={item} />
-                    </TouchableOpacity>
-                  )}
-                />
-              )}
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+        <Header
+          leftComponent={{
+            icon: 'home',
+            color: '#fff',
+            onPress: () => this.handleOnHeaderPress(),
+          }}
+          centerComponent={{text: 'UK Phonics', style: {color: '#fff'}}}
+        />
+        <ScrollView>
+          <View>
+            {this.state.showCard ? (
+              <CardDeck cards={cards} cardIndex={this.state.showCardIndex} />
+            ) : (
+              <FlatGrid
+                itemDimension={150}
+                data={cards}
+                renderItem={({item}, i) => (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() => this.handleOnCardPress(item)}>
+                    <Card
+                      image={item.imageSrc}
+                      imageProps={{resizeMode: 'contain'}}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
+            )}
+          </View>
+        </ScrollView>
       </>
     );
   }
