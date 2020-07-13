@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 import React, { Component } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Card, Header } from 'react-native-elements';
 import { FlatGrid } from 'react-native-super-grid';
 
@@ -42,36 +42,38 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Header
-          leftComponent={{
-            icon: 'home',
-            color: '#fff',
-            onPress: () => this.handleOnHeaderPress(),
-          }}
-          centerComponent={{text: 'UK Phonics', style: {color: '#fff'}}}
-        />
-        <ScrollView>
-          <View>
-            {this.state.showCard ? (
-              <CardDeck cards={cards} cardIndex={this.state.showCardIndex} />
-            ) : (
-              <FlatGrid
-                itemDimension={150}
-                data={cards}
-                renderItem={({item}, i) => (
-                  <TouchableOpacity
-                    key={i}
-                    onPress={() => this.handleOnCardPress(item)}>
-                    <Card
-                      image={item.imageSrc}
-                      imageProps={{resizeMode: 'contain'}}
-                    />
-                  </TouchableOpacity>
-                )}
-              />
-            )}
-          </View>
-        </ScrollView>
+        <SafeAreaView>
+          <Header
+            leftComponent={{
+              icon: 'home',
+              color: '#fff',
+              onPress: () => this.handleOnHeaderPress(),
+            }}
+            centerComponent={{text: 'UK Phonics', style: {color: '#fff'}}}
+          />
+          <ScrollView>
+            <View>
+              {this.state.showCard ? (
+                <CardDeck cards={cards} cardIndex={this.state.showCardIndex} />
+              ) : (
+                <FlatGrid
+                  itemDimension={150}
+                  data={cards}
+                  renderItem={({item}, i) => (
+                    <TouchableOpacity
+                      key={i}
+                      onPress={() => this.handleOnCardPress(item)}>
+                      <Card
+                        image={item.imageSrc}
+                        imageProps={{resizeMode: 'contain'}}
+                      />
+                    </TouchableOpacity>
+                  )}
+                />
+              )}
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       </>
     );
   }

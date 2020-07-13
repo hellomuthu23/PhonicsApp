@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Card } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 
 export default class CardDeck extends Component {
   render() {
     return (
-      <Swiper index={this.props.cardIndex}>
+      <Swiper height={600} index={this.props.cardIndex}>
         {this.props.cards.map((item, i) => (
-          <Image
+          <Card
             key={i}
-            source={item.imageSrc}
-            style={{resizeMode: 'contain', height: '70%'}}
+            image={item.imageSrc}
+            imageProps={{resizeMode: 'contain'}}
+            imageStyle={{height: '85%'}}
           />
         ))}
       </Swiper>
