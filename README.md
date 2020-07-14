@@ -1,3 +1,5 @@
+<img src="assets/screenshots/screen.png"  />
+
 # UK Phonics Mobile App
 
 A Simple and free UK Phonics mobile app which has all alphabets.
