@@ -27,3 +27,11 @@ A Simple and free UK Phonics mobile app which has all alphabets.
 - React Native Element - UI lib
 - React Native Swiper - for swiping/playing the cards
 - React Native Super grid - for display the cards in nice grid format
+
+# TODOs
+
+- Add Splash/Loading screen
+- Add tests
+- Setup Github Actions for tests
+- Setup Github Actions for Deploy to Playstore
+- Ios support
